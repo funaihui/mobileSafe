@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MobileSafe</string>
+    <string name="beat">Beat版</string>
+    <string name="home">主界面</string>
+    <string name="describe">我是一个功能齐全的手机卫士，可以好好的保护你的手机，千万不要把我卸载掉哦！</string>
+    <string name="setPassword">密码设置</string>
+    <string name="inputPassword">输入密码：</string>
+    <string name="reInputPassword">再次输入密码：</string>
+    <string name="commit">确定</string>
+</resources>

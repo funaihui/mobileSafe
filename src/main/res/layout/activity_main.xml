@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.customview.xiaohui.mobilesafe.activitys.MainActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorHomeToolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+<TextView
+    android:layout_width="wrap_content"
+    android:gravity="center"
+    android:textColor="@android:color/white"
+    android:textSize="30sp"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:text="@string/home"/>
+    </android.support.v7.widget.Toolbar>
+    <com.customview.xiaohui.mobilesafe.view.MyTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:singleLine="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:ellipsize="marquee"
+        android:text="@string/describe"/>
+    <GridView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:verticalSpacing="20dp"
+        android:id="@+id/gv_home_show_icon"/>
+</LinearLayout>

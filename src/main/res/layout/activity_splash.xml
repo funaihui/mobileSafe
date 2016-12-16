@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_splash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_bg"
+    tools:context="com.customview.xiaohui.mobilesafe.activitys.SplashActivity">
+    <TextView
+        android:id="@+id/tv_splash_version_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/beat"
+        android:layout_centerInParent="true"
+        android:textSize="30sp"
+        android:textColor="@color/colorAccent"
+        />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_splash_version_name"
+        android:layout_centerHorizontal="true"/>
+
+    <ProgressBar
+
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="26dp"
+        android:visibility="gone"
+        android:id="@+id/pb_splash_download_progress"/>
+
+</RelativeLayout>
