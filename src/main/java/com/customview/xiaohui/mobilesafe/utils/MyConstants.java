@@ -7,4 +7,6 @@ package com.customview.xiaohui.mobilesafe.utils;
 public interface MyConstants {
     String USERINFO = "userinfo";
     String PASSWORD = "password";
+    String SIM = "sim";
+    String SAVENUM = "savenum";
 }

@@ -33,35 +33,14 @@
 
         <EditText
             android:inputType="textPassword"
-            android:id="@+id/et_dialog_password"
+            android:id="@+id/et_dialog_enter_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_shape"
             />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/reInputPassword"
-            android:textSize="20sp"
-            />
-
-        <EditText
-            android:inputType="textPassword"
-            android:id="@+id/et_dialog_repassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@drawable/edittext_shape"
-            />
-    </LinearLayout>
 
 
     <Button
@@ -70,7 +49,7 @@
         android:layout_gravity="center"
         android:background="@drawable/bt_selector"
         android:text="@string/commit"
-        android:id="@+id/b_dialog_commit"
+        android:id="@+id/b_dialog_enter_commit"
         android:layout_marginTop="5dp"
         android:textColor="@android:color/white"
         android:textSize="18sp"/>

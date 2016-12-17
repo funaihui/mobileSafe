@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.customview.xiaohui.mobilesafe">
-<uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
     <application
+        android:name=".application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:name=".application.MyApplication"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activitys.MainActivity">
-
         </activity>
         <activity android:name=".activitys.SplashActivity">
             <intent-filter>
@@ -19,6 +21,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".activitys.Setup1Activity">
+        </activity>
+        <activity android:name=".activitys.Setup2Activity">
+        </activity>
+        <activity android:name=".activitys.Setup3Activity">
+        </activity>
+        <activity android:name=".activitys.Setup4Activity">
         </activity>
     </application>
 

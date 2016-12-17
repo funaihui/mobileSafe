@@ -1,6 +1,7 @@
 package com.customview.xiaohui.mobilesafe.activitys;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.customview.xiaohui.mobilesafe.R;
+import com.customview.xiaohui.mobilesafe.utils.MD5Utils;
 import com.customview.xiaohui.mobilesafe.utils.MyConstants;
 import com.customview.xiaohui.mobilesafe.utils.SPUtil;
 
@@ -44,11 +46,51 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-                        showSettingPassDialog();
+                        if (TextUtils.isEmpty(SPUtil.getString(getApplicationContext(),MyConstants.PASSWORD,""))){
+                            showSettingPassDialog();  
+                        }else {
+                            showEnterDialog();
+                        }
+                        
                         break;
                 }
             }
         });
+    }
+
+    private void showEnterDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = View.inflate(MainActivity.this,R.layout.enter_dialog,null);
+
+        final EditText etPassword = (EditText)view.findViewById(R.id.et_dialog_enter_password);
+        Button button = (Button) view.findViewById(R.id.b_dialog_enter_commit);
+        builder.setView(view);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //设置密码
+                String passone = etPassword.getText().toString().trim();
+                if (TextUtils.isEmpty(passone)){
+                    Toast.makeText(getApplicationContext(), "密码不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    String password = SPUtil.getString(getApplicationContext(),MyConstants.PASSWORD,"");
+                    String enterword = MD5Utils.md5(passone);
+                    if (enterword.equals(password)){
+                        Intent i = new Intent(MainActivity.this, Setup1Activity.class);
+                        startActivity(i);
+                        mAlertDialog.dismiss();
+                    }else {
+                        Toast.makeText(getApplicationContext(), "密码输入错误", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+        });
+
+        mAlertDialog = builder.create();
+        mAlertDialog.show();
     }
 
     private void showSettingPassDialog() {
@@ -74,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     //保存密码
                     //保存密码到sp中
-                    SPUtil.setPassword(getApplicationContext(), MyConstants.PASSWORD, passone);
+                    String password = MD5Utils.md5(passone);
+                    SPUtil.putString(getApplicationContext(), MyConstants.PASSWORD, password);
                     mAlertDialog.dismiss();
                 }
 

@@ -3,8 +3,25 @@
     <string name="beat">Beat版</string>
     <string name="home">主界面</string>
     <string name="describe">我是一个功能齐全的手机卫士，可以好好的保护你的手机，千万不要把我卸载掉哦！</string>
-    <string name="setPassword">密码设置</string>
+    <string name="enterPassword">输入密码</string>
     <string name="inputPassword">输入密码：</string>
-    <string name="reInputPassword">再次输入密码：</string>
+    <string name="reInputPassword">确认密码：</string>
     <string name="commit">确定</string>
+    <string name="login">登陆</string>
+    <string name="setup1Title">1、欢迎使用手机防盗</string>
+    <string name="setup1Description">您的手机防盗卫士：</string>
+    <string name="simChangeMessage">SIM卡变更报警</string>
+    <string name="gpsMessage">GPS追踪：</string>
+    <string name="remoteLock">远程锁屏：</string>
+    <string name="remoteCleanData">远程清除数据：</string>
+    <string name="next">下一步</string>
+    <string name="pre">上一步</string>
+    <string name="simBind">2、手机卡绑定</string>
+    <string name="simBindOrUnbind">点击绑定/解绑SIM卡</string>
+    <string name="setSafeNumber">3、设置安全号码</string>
+    <string name="setup2Description">通过绑定SIM：\n下次重启手机如果发现SIM卡不一致，就会发送报警短信</string>
+    <string name="selectSafeNum">选择联系人</string>
+    <string name="setFinish">4、恭喜你完成设置</string>
+    <string name="selectSafe">打钩开启防盗保护</string>
+    <string name="setupFinish">完成设置</string>
 </resources>

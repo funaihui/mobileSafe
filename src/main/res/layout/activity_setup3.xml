@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setup1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.customview.xiaohui.mobilesafe.activitys.Setup1Activity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorHomeToolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/setSafeNumber"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"/>
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="SIM卡如果生变化：\n报警短信就会发送给安全号码"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/et_setup3_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:maxLength="11"
+        android:inputType="phone"
+        android:background="@drawable/edittext_shape"
+        android:padding="15dp"/>
+
+    <Button
+        android:id="@+id/bt_setup3_select_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/bt_selector"
+        android:text="@string/selectSafeNum"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/gray_point"/>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/gray_point"/>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/green_point"/>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/gray_point"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/phone"/>
+
+        <Button
+            style="@style/setupButtonNext"/>
+
+        <Button
+            style="@style/setupButtonPre"/>
+    </RelativeLayout>
+</LinearLayout>
