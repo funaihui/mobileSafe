@@ -16,4 +16,12 @@ public class SPUtil {
         SharedPreferences sharedPreferences = context.getSharedPreferences(MyConstants.USERINFO,Context.MODE_PRIVATE);
         return sharedPreferences.getString(key,defValue);
     }
+    public static void putBoolen(Context context,String key,boolean value){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(MyConstants.USERINFO,Context.MODE_PRIVATE);
+        sharedPreferences.edit().putBoolean(key,value).apply();
+    }
+    public static boolean getBoolen(Context context,String key,boolean defValue){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(MyConstants.USERINFO,Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean(key,defValue);
+    }
 }

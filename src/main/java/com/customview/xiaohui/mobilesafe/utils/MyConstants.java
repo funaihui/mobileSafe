@@ -9,4 +9,7 @@ public interface MyConstants {
     String PASSWORD = "password";
     String SIM = "sim";
     String SAVENUM = "savenum";
+    String ISSTEUP = "issetup";
+    String ISRUNNING = "isrunning";
+    int SEED = 110;
 }

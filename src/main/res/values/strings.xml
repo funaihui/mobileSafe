@@ -3,7 +3,7 @@
     <string name="beat">Beat版</string>
     <string name="home">主界面</string>
     <string name="describe">我是一个功能齐全的手机卫士，可以好好的保护你的手机，千万不要把我卸载掉哦！</string>
-    <string name="enterPassword">输入密码</string>
+    <string name="enterPassword">登陆密码</string>
     <string name="inputPassword">输入密码：</string>
     <string name="reInputPassword">确认密码：</string>
     <string name="commit">确定</string>
@@ -24,4 +24,13 @@
     <string name="setFinish">4、恭喜你完成设置</string>
     <string name="selectSafe">打钩开启防盗保护</string>
     <string name="setupFinish">完成设置</string>
+    <string name="guardSurface">手机防盗界面</string>
+    <string name="safeNum">安全号码：</string>
+    <string name="reSet">重新进入设置向导界面</string>
+    <string name="musicAlarm">音乐报警:#*music*#</string>
+    <string name="gpsToken">GPS追踪：#*gps*#</string>
+    <string name="remoteLockScreen">远程锁屏：#*lockscreen*#</string>
+    <string name="wipeData">远程清除数据：#*wipedata*#</string>
+    <string name="showIsOpenSafe">防盗保护未开启</string>
+    <string name="sample_device_admin_description">开启设备管理器</string>
 </resources>

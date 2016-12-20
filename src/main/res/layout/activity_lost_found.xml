@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setup1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.customview.xiaohui.mobilesafe.activitys.Setup1Activity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorHomeToolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/guardSurface"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"/>
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_margin="10dp"
+            android:text="@string/safeNum"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="24sp"
+            android:id="@+id/tv_lost_show_safenum"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_lost_show_safe_message"
+            android:textSize="28sp"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/holo_red_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/showIsOpenSafe"
+            />
+        <ImageView
+            android:id="@+id/iv_lost_show_safe_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/unlock"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+    <Button
+        android:id="@+id/bt_lost_enter_guide"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:text="@string/reSet"
+        android:background="@drawable/bt_selector"
+        android:layout_height="wrap_content"/>
+    <TextView
+        style="@style/setupText"
+        android:drawableLeft="@drawable/blue_circle"
+        android:text="@string/simChangeMessage"
+        />
+    <TextView
+        style="@style/setupText"
+        android:drawableLeft="@drawable/green_circle"
+        android:text="@string/gpsToken"
+        />
+    <TextView
+        style="@style/setupText"
+        android:drawableLeft="@drawable/red_circle"
+        android:text="@string/remoteLockScreen"
+        />
+    <TextView
+        style="@style/setupText"
+        android:drawableLeft="@drawable/green_circle"
+        android:text="@string/wipeData"
+        />
+    android:layout_height="wrap_content"/>
+    <TextView
+        style="@style/setupText"
+        android:drawableLeft="@drawable/blue_circle"
+        android:text="@string/musicAlarm"
+        />
+
+
+
+
+</LinearLayout>

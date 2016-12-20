@@ -78,8 +78,14 @@ public class MainActivity extends AppCompatActivity {
                     String password = SPUtil.getString(getApplicationContext(),MyConstants.PASSWORD,"");
                     String enterword = MD5Utils.md5(passone);
                     if (enterword.equals(password)){
-                        Intent i = new Intent(MainActivity.this, Setup1Activity.class);
-                        startActivity(i);
+                        if (SPUtil.getBoolen(getApplicationContext(),MyConstants.ISSTEUP,false)){
+                            Intent i = new Intent(MainActivity.this, LostFoundActivity.class);
+                            startActivity(i);
+                        }else {
+                            Intent i = new Intent(MainActivity.this, Setup1Activity.class);
+                            startActivity(i);
+                        }
+
                         mAlertDialog.dismiss();
                     }else {
                         Toast.makeText(getApplicationContext(), "密码输入错误", Toast.LENGTH_SHORT).show();

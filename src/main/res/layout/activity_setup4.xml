@@ -31,7 +31,7 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:id="@+id/cb_setup4_start_protect"
         android:text="@string/selectSafe"
         android:textSize="20sp"/>
 
@@ -39,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:id="@+id/tv_setup4_show_message"
         android:text="防盗保护未开启"
         android:textColor="@android:color/holo_red_light"
         android:textSize="20sp"/>
