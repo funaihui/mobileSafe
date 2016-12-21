@@ -10,21 +10,16 @@
     tools:context="com.customview.xiaohui.mobilesafe.activitys.Setup1Activity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+
+        android:id="@+id/tb_lost_toolbar"
+        android:elevation="4dp"
         android:layout_width="match_parent"
+        app:title="@string/guardSurface"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorHomeToolbar"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        app:popupTheme="@style/OverflowMenuStyle">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/guardSurface"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"/>
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout

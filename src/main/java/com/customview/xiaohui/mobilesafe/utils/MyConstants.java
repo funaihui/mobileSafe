@@ -11,5 +11,6 @@ public interface MyConstants {
     String SAVENUM = "savenum";
     String ISSTEUP = "issetup";
     String ISRUNNING = "isrunning";
+    String ISAUTOUPDATE = "isautoupdate";
     int SEED = 110;
 }

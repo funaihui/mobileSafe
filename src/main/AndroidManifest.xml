@@ -69,9 +69,11 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name=".service.LocationService">
+        <service android:name=".service.LocationService">
         </service>
+
+        <activity android:name=".activitys.SettingCenterActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 import com.customview.xiaohui.mobilesafe.R;
 import com.customview.xiaohui.mobilesafe.domain.VersionBean;
+import com.customview.xiaohui.mobilesafe.utils.MyConstants;
+import com.customview.xiaohui.mobilesafe.utils.SPUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,8 +62,39 @@ public class SplashActivity extends AppCompatActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         initView();
         initAnimation();
-        checkVersion();
+        initEvent();//监听事件
+        timeInitialization();//处理耗时操作
         initData();
+    }
+    private void timeInitialization(){
+        //一开始动画，就应该干耗时的业务（网络，本地数据初始化，数据的拷贝等）
+        if (SPUtil.getBoolen(getApplicationContext(), MyConstants.ISAUTOUPDATE, false)) {
+            //true 自动更新
+            // 检测服务器的版本
+            checkVersion();
+        }
+        //增加自己的耗时功能处理
+
+    }
+    private void initEvent() {
+        //监听动画，处理业务逻辑
+        as.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+               timeInitialization();
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                //动画结束进入主界面
+                loadMain();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 
 

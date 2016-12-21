@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                         
                         break;
+                    case 8:
+                        Intent settingCenter = new Intent(MainActivity.this,SettingCenterActivity.class);
+                        startActivity(settingCenter);
+                        break;
                 }
             }
         });
