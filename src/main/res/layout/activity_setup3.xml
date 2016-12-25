@@ -42,7 +42,7 @@
         android:layout_margin="5dp"
         android:maxLength="11"
         android:inputType="phone"
-        android:background="@drawable/edittext_shape"
+        android:background="@drawable/safe_edittext_shape"
         android:padding="15dp"/>
 
     <Button

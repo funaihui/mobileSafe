@@ -86,8 +86,9 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                //动画结束进入主界面
-                loadMain();
+                if (!SPUtil.getBoolen(getApplicationContext(), MyConstants.ISAUTOUPDATE, false)) {
+                    loadMain();
+                }
             }
 
             @Override
@@ -121,7 +122,7 @@ public class SplashActivity extends AppCompatActivity {
                     startTimeMillis = System.currentTimeMillis();
                     URL url = null;
                     try {
-                        url = new URL("http://192.168.1.120/mobilesafe/version.json");
+                        url = new URL("http://www.wizardev.com/mobilesafe/version.json");
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }

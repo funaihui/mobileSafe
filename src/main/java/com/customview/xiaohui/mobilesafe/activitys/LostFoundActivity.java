@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +24,6 @@ public class LostFoundActivity extends AppCompatActivity {
     private TextView showSafeStatus;
     private Button enterGuide;
     private ImageView showSafeStatusPic;
-    private PopupWindow popupWindow;
     private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +64,7 @@ public class LostFoundActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lost_found);
 
         toolbar = (Toolbar) findViewById(R.id.tb_lost_toolbar);
+
         setSupportActionBar(toolbar);
 
         showSafeNum = (TextView) findViewById(R.id.tv_lost_show_safenum);

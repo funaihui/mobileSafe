@@ -12,5 +12,12 @@ public interface MyConstants {
     String ISSTEUP = "issetup";
     String ISRUNNING = "isrunning";
     String ISAUTOUPDATE = "isautoupdate";
+    String TABLENAME = "blacklist";
+    String PHONE = "phone";
+    String MODE = "mode";
+    String BLACKLIST = "blacklist";
     int SEED = 110;
+    int TEL = 1 <<0;
+    int SMS = 1 << 1;
+    int ALL = TEL | SMS;
 }

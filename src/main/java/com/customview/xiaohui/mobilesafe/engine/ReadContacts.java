@@ -16,6 +16,51 @@ import java.util.List;
 
 public class ReadContacts {
     private static final String TAG = "ReadContacts";
+
+    public static List<ContactsBean> readSmslog(Context context){
+        //1，电话日志的数据库
+        //2,通过分析，db不能直接访问，需要内容提供者访问该数据库
+        //3,看上层源码 找到uri content://sms
+        Uri uri = Uri.parse("content://sms");
+        //获取电话记录的联系人游标
+        Cursor cursor = context.getContentResolver().query(uri, new String[]{"address"}, null, null, " _id desc");
+        List<ContactsBean> datas = new ArrayList<ContactsBean>();
+
+        while (cursor.moveToNext()) {
+            ContactsBean bean = new ContactsBean();
+
+            String phone = cursor.getString(0);//获取号码
+            //String name = cursor.getString(1);//获取名字
+
+            //bean.setName(name);
+            bean.setNumber(phone);
+
+            //添加数据
+            datas.add(bean);
+
+        }
+        return datas;
+
+    }
+
+    public static List<ContactsBean> ReadCallLogs(Context context){
+
+        List<ContactsBean> list = new ArrayList<>();
+
+        Uri callLogUri = Uri.parse("content://call_log/calls");
+        Cursor cursor = context.getContentResolver().query(callLogUri, new String[]{"number","name"}, null, null, "_id desc");
+        Log.i(TAG, "ReadCallLogs: "+cursor.moveToNext());
+
+        while (cursor.moveToNext()){
+            ContactsBean bean = new ContactsBean();
+            bean.setName(cursor.getString(1));
+            bean.setNumber(cursor.getString(0));
+            list.add(bean);
+        }
+        return list;
+    }
+
+
     /**
      *查询本机的联系人
      * @param context
@@ -29,6 +74,7 @@ public class ReadContacts {
          android:readPermission="android.permission.READ_CONTACTS"
          android:writePermission="android.permission.WRITE_CONTACTS"
          */
+
         List<ContactsBean> contactsList = new ArrayList<>();
         Uri uriContacts = Uri.parse("content://com.android.contacts/contacts");
         Uri uriData = Uri.parse("content://com.android.contacts/data");

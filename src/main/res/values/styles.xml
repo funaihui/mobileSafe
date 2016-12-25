@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
-        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
+        <!--<item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>-->
     </style>
 
     <style name="setupText">
@@ -48,15 +48,47 @@
         <item name="android:drawableLeft">@drawable/ic_arrow_back_black_24dp</item>
     </style>
 
-
-    <style name="OverflowMenuStyle" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
+    <style name="OverflowBlacklistMenuStyle" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
         <!-- 是否覆盖锚点，默认为true，即盖住Toolbar -->
         <item name="overlapAnchor">false</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowBlacklistMenuStyle</item>
         <!-- 弹出层背景颜色 -->
-        <item name="android:popupBackground">@color/colorHomeToolbar</item>
+        <item name="android:popupBackground">@color/colorBlacklist</item>
         <!-- 弹出层垂直方向上的偏移，即在竖直方向上距离Toolbar的距离，值为负则会盖住Toolbar -->
         <item name="android:dropDownVerticalOffset">5dp</item>
         <!-- 弹出层水平方向上的偏移，即距离屏幕左边的距离，负值会导致右边出现空隙 -->
         <item name="android:dropDownHorizontalOffset">0dp</item>
+    </style>
+
+    <style name="OverflowMenuStyle" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
+        <item name="android:popupBackground">@color/colorHomeToolbar</item>
+        <item name="android:dropDownVerticalOffset">5dp</item>
+        <item name="android:dropDownHorizontalOffset">0dp</item>
+    </style>
+
+    <style name="DialogButtonStyle">
+        <!-- android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/bt_selector"
+        android:text="@string/commit"
+        android:id="@+id/b_dialog_enter_commit"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"-->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <!--<item name="android:layout_marginTop">30dp</item>-->
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="MyCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_selector</item>
+
     </style>
 </resources>

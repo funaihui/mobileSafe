@@ -23,7 +23,7 @@ public class SIMChangedReceiver extends BroadcastReceiver {
         String oldSIMInfo = SPUtil.getString(context, MyConstants.SIM,"");
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String newSIMInfo = tm.getSimSerialNumber();
-        if (!oldSIMInfo.equals(newSIMInfo+"1")){
+        if (!oldSIMInfo.equals(newSIMInfo)){
             String s = SPUtil.getString(context, MyConstants.SAVENUM, "");
             String saveNum = EncryptTools.deciphery(MyConstants.SEED,s);
             SmsManager sm = SmsManager.getDefault();

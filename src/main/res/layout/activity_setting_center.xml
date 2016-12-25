@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     tools:context="com.customview.xiaohui.mobilesafe.activitys.SettingCenterActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -19,10 +18,32 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
     </android.support.v7.widget.Toolbar>
-    <com.customview.xiaohui.mobilesafe.view.MyCardView
-        android:id="@+id/mc_setting_center_auto_update"
+    <android.support.v7.widget.CardView
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="自动更新"
-        app:content="已开启-未开启"/>
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        android:layout_height="wrap_content">
+        <com.customview.xiaohui.mobilesafe.view.MyCardView
+            android:id="@+id/mc_setting_center_auto_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="新版本检测"
+            app:content="已开启-未开启"/>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        app:cardElevation="5dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        android:layout_height="wrap_content">
+        <com.customview.xiaohui.mobilesafe.view.MyCardView
+            android:id="@+id/mc_setting_center_blacklist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="黑名单过滤"
+            app:content="已开启-未开启"/>
+    </android.support.v7.widget.CardView>
+
 </LinearLayout>

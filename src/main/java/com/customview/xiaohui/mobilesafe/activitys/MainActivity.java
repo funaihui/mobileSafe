@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                         
                         break;
+                    case 1:
+                        Intent blacklist = new Intent(MainActivity.this,BlacklistActivity.class);
+                        startActivity(blacklist);
+                        break;
                     case 8:
                         Intent settingCenter = new Intent(MainActivity.this,SettingCenterActivity.class);
                         startActivity(settingCenter);

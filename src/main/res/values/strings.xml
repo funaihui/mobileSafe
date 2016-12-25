@@ -35,4 +35,17 @@
     <string name="sample_device_admin_description">开启设备管理器</string>
     <string name="modifyTitle">修改标题</string>
     <string name="settingCenter">设置中心</string>
+    <string name="blacklist">黑名单</string>
+    <string name="noFoundData">没有数据</string>
+    <string name="addBlacklistUseHand">手动添加</string>
+    <string name="addBlacklistFromCantacts">从联系人导入</string>
+    <string name="addBlacklistFromSms">从信息导入</string>
+    <string name="addBlacklist">添加黑名单</string>
+    <string name="blacklistPhone">电话：</string>
+    <string name="negative">取消</string>
+    <string name="selectMode">模式选择:</string>
+    <string name="phone">电话</string>
+    <string name="sms">信息</string>
+    <string name="inputBlacklistNumHint">请输入要加入黑名单的号码</string>
+    <string name="addBlacklistFromCallLog">从通话记录导入</string>
 </resources>

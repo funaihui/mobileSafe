@@ -36,7 +36,7 @@
             android:id="@+id/et_dialog_enter_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/edittext_shape"
+            android:background="@drawable/safe_edittext_shape"
             />
     </LinearLayout>
 

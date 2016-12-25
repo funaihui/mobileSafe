@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
@@ -22,10 +24,11 @@ import com.customview.xiaohui.mobilesafe.receiver.DeviceAdminSample;
  */
 
 public class LostFoundService extends Service {
+    boolean isPlay = false;
     private SmsReceiver smsReceiver;
     private DevicePolicyManager policyManager;
     private ComponentName name;
-    boolean isPlay = false;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -49,18 +52,26 @@ public class LostFoundService extends Service {
     }
 
     class SmsReceiver extends BroadcastReceiver {
+        @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         public void onReceive(Context context, Intent intent) {
             Bundle extras = intent.getExtras();
             Object[] datas = (Object[]) extras.get("pdus");
             for (Object data : datas) {
-                SmsMessage sm = SmsMessage.createFromPdu((byte[]) data);
-                String messageBody = sm.getMessageBody();
+                SmsMessage sm = null;
+                sm = SmsMessage.createFromPdu((byte[]) data);
+                String messageBody;
+                if (sm.getMessageBody() == null){
+                    return;
+                }else {
+
+                    messageBody = sm.getMessageBody();
+                }
+
                 Log.i("Wizardev", "onReceive:messageBody " + messageBody);
                 if (messageBody.equals("#*lockscreen*#")) {
 
                     policyManager = (DevicePolicyManager) context.getSystemService(DEVICE_POLICY_SERVICE);
-
                     name = new ComponentName(context, DeviceAdminSample.class);
                     if (policyManager.isAdminActive(name)) {
                         policyManager.resetPassword("1234", DevicePolicyManager.RESET_PASSWORD_DO_NOT_ASK_CREDENTIALS_ON_BOOT);
@@ -72,17 +83,17 @@ public class LostFoundService extends Service {
                     startService(locationService);
                     abortBroadcast();
                 } else if (messageBody.equals("#*wipedata*#")) {
-                    if (policyManager.isAdminActive(name)){
+                    if (policyManager.isAdminActive(name)) {
                         policyManager.wipeData(DevicePolicyManager.WIPE_EXTERNAL_STORAGE);
                         abortBroadcast();
                     }
-                }else if (messageBody.equals("#*music*#")){
+                } else if (messageBody.equals("#*music*#")) {
                     abortBroadcast();
-                    if (isPlay){
+                    if (isPlay) {
                         return;
                     }
                     MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.dou);
-                    mediaPlayer.setVolume(1f,1f);
+                    mediaPlayer.setVolume(1f, 1f);
                     mediaPlayer.start();
                     mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         @Override
@@ -90,9 +101,12 @@ public class LostFoundService extends Service {
                             isPlay = false;
                         }
                     });
-                    isPlay=true;
+                    isPlay = true;
                 }
             }
         }
+
+
     }
+
 }

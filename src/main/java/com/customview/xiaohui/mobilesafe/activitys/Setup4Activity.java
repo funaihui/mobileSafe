@@ -1,8 +1,13 @@
 package com.customview.xiaohui.mobilesafe.activitys;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -24,7 +29,44 @@ public class Setup4Activity extends SetupBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkPer();//检查权限
+    }
 
+    private void checkPer() {
+        //检查权限
+        int locationCheck = ContextCompat.checkSelfPermission(Setup4Activity.this,
+                Manifest.permission.READ_PHONE_STATE);
+        int receiveMessageCheck = ContextCompat.checkSelfPermission(Setup4Activity.this,
+                Manifest.permission.RECEIVE_SMS);
+        int sendMessageCheck = ContextCompat.checkSelfPermission(Setup4Activity.this,
+                Manifest.permission.SEND_SMS);
+        int fineLocationCheck = ContextCompat.checkSelfPermission(Setup4Activity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+        int readMessageCheck = ContextCompat.checkSelfPermission(Setup4Activity.this,
+                Manifest.permission.READ_SMS);
+        int writeExternalStorageCheck = ContextCompat.checkSelfPermission(Setup4Activity.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int coarseLocationCheck = ContextCompat.checkSelfPermission(Setup4Activity.this,
+                Manifest.permission.ACCESS_COARSE_LOCATION);
+        if (locationCheck == PackageManager.PERMISSION_GRANTED
+                && receiveMessageCheck == PackageManager.PERMISSION_GRANTED
+                && sendMessageCheck == PackageManager.PERMISSION_GRANTED
+                && fineLocationCheck == PackageManager.PERMISSION_GRANTED
+                && readMessageCheck == PackageManager.PERMISSION_GRANTED
+                && writeExternalStorageCheck == PackageManager.PERMISSION_GRANTED
+                && coarseLocationCheck == PackageManager.PERMISSION_GRANTED) {
+            initEvent();
+        } else {
+            //  Toast.makeText(getApplicationContext(),"没有响应的权限",Toast.LENGTH_SHORT).show();
+            //没有权限，获取相应的权限
+            ActivityCompat.requestPermissions(Setup4Activity.this,
+                    new String[]{Manifest.permission.READ_PHONE_STATE,
+                            Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS,
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.READ_SMS, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+
+        }
     }
 
     @Override
@@ -53,16 +95,15 @@ public class Setup4Activity extends SetupBaseActivity {
         mStartProtect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
                 if (b) {
-                    SPUtil.putBoolen(getApplicationContext(),MyConstants.ISRUNNING,true);
+                    SPUtil.putBoolen(getApplicationContext(), MyConstants.ISRUNNING, true);
                     Intent service = new Intent(Setup4Activity.this, LostFoundService.class);
                     Log.i(TAG, "onCheckedChanged: " + b);
                     mShowMessage.setTextColor(Color.GREEN);
                     mShowMessage.setText("防盗保护已开启");
                     startService(service);
                 } else {
-                    SPUtil.putBoolen(getApplicationContext(),MyConstants.ISRUNNING,false);
+                    SPUtil.putBoolen(getApplicationContext(), MyConstants.ISRUNNING, false);
                     Intent service = new Intent(Setup4Activity.this, LostFoundService.class);
 
                     Log.i(TAG, "onCheckedChanged: " + b);
@@ -73,6 +114,23 @@ public class Setup4Activity extends SetupBaseActivity {
             }
         });
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    initEvent();
+                } else {
+                    Toast.makeText(getApplicationContext(), "请求权限失败", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+        }
+    }
+
 
     @Override
     public void next(View v) {
