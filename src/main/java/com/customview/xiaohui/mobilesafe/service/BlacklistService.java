@@ -24,9 +24,12 @@ import java.lang.reflect.Method;
 
 public class BlacklistService extends Service {
     private static final String TAG = "Wizardev";
+    private TelephonyManager telephonyManager;
     private BlacklistSmsReceiver smsReceiver;
     private BlacklistDao blacklistDao;
-    private TelephonyManager telephony = null;
+    private PhoneStateListener listener;
+    ;
+
     @Override
     public IBinder onBind(Intent intent) {
 
@@ -45,14 +48,15 @@ public class BlacklistService extends Service {
         registerReceiver(smsReceiver, filter);
         Log.i(TAG, "onCreate: BlacklistService");
         //监听电话
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        PhoneStateListener listener = new PhoneStateListener(){
+
+        telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+
+        listener = new PhoneStateListener() {
             @Override
             public void onCallStateChanged(int state, final String incomingNumber) {
-                if (state == TelephonyManager.CALL_STATE_RINGING){
-                    Log.i(TAG, "onCallStateChanged: "+incomingNumber);
+                if (state == TelephonyManager.CALL_STATE_RINGING) {
                     int mode = blacklistDao.getMode(incomingNumber);
-                    if ((MyConstants.TEL & mode) != 0){
+                    if ((MyConstants.TEL & mode) != 0) {
                         Log.i(TAG, "onCallStateChanged: 电话拦截");
                         getContentResolver().registerContentObserver(Uri.parse("content://call_log/calls"), true,
                                 new ContentObserver(new Handler()) {
@@ -86,13 +90,13 @@ public class BlacklistService extends Service {
             }
         };
 
-        telephonyManager.listen(listener,PhoneStateListener.LISTEN_CALL_STATE);
+        telephonyManager.listen(listener, PhoneStateListener.LISTEN_CALL_STATE);
 
     }
 
     private void deleteCalllog(String incomingNumber) {
         Uri uri = Uri.parse("content://call_log/calls");
-        getContentResolver().delete(uri,"number=?",new String[]{incomingNumber});
+        getContentResolver().delete(uri, "number=?", new String[]{incomingNumber});
     }
 
     private void overPhone() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, RemoteException {
@@ -110,6 +114,16 @@ public class BlacklistService extends Service {
 
     @Override
     public void onDestroy() {
+        Log.i(TAG, "onDestroy: 1111111111");
+        if (smsReceiver != null) {
+            unregisterReceiver(smsReceiver);
+            smsReceiver = null;
+        }
+        if (telephonyManager != null) {
+            telephonyManager.listen(listener, PhoneStateListener.LISTEN_NONE);
+            telephonyManager = null;
+        }
+
         super.onDestroy();
     }
 
@@ -126,11 +140,11 @@ public class BlacklistService extends Service {
                 SmsMessage sm = null;
                 sm = SmsMessage.createFromPdu((byte[]) sms);
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                    sm = SmsMessage.createFromPdu((byte[]) sms,"utf-8");
+                    sm = SmsMessage.createFromPdu((byte[]) sms, "utf-8");
                 }
                 String address = sm.getOriginatingAddress();
                 int mode = blacklistDao.getMode(address);
-                if ((MyConstants.SMS & mode) != 0){
+                if ((MyConstants.SMS & mode) != 0) {
                     //说明需要拦截短信
                     abortBroadcast();//终止广播
                 }

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
+    <color name="colorSoftwareManager">#03a9f4</color>
     <color name="colorPrimaryDark">#5f9b04</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorHomeToolbar">#7bcc00</color>
     <color name="colorButtonPressed">#cfcc0d</color>
     <color name="colorBlacklist">#009688</color>
+    <color name="colorAdvancedTools">#9E9E9E</color>
+    <color name="colorAdvancedToolsLight">#d1cece</color>
 </resources>

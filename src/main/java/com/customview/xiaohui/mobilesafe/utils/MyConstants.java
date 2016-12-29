@@ -15,7 +15,8 @@ public interface MyConstants {
     String TABLENAME = "blacklist";
     String PHONE = "phone";
     String MODE = "mode";
-    String BLACKLIST = "blacklist";
+    String TOASTX = "toastX";
+    String TOASTY = "toastY";
     int SEED = 110;
     int TEL = 1 <<0;
     int SMS = 1 << 1;

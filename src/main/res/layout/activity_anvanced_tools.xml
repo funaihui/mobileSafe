@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_anvanced_tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.customview.xiaohui.mobilesafe.activitys.AdvancedToolsActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:elevation="4dp"
+        app:title="@string/advancedTools"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorAdvancedTools"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+    </android.support.v7.widget.Toolbar>
+    <TextView
+        android:id="@+id/tv_ad_tools_query_location"
+        android:text="@string/phoneLocationCheck"
+        style="@style/AdvancedToolsStyle"
+        android:drawableLeft="@mipmap/ic_action_room"
+        />
+    <ImageView
+        style="@style/HorizontalLineStyle"/>
+    <TextView
+        android:id="@+id/tv_ad_tools_backups"
+        style="@style/AdvancedToolsStyle"
+        android:text="@string/smsBackups"
+
+        android:drawableLeft="@drawable/message"
+        />
+    <ImageView
+        style="@style/HorizontalLineStyle"/>
+    <TextView
+        android:id="@+id/tv_ad_tools_resume"
+        style="@style/AdvancedToolsStyle"
+        android:text="@string/smsResume"
+
+        android:drawableLeft="@drawable/message"
+        />
+    <ImageView
+        style="@style/HorizontalLineStyle"/>
+</LinearLayout>

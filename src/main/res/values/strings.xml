@@ -48,4 +48,10 @@
     <string name="sms">信息</string>
     <string name="inputBlacklistNumHint">请输入要加入黑名单的号码</string>
     <string name="addBlacklistFromCallLog">从通话记录导入</string>
+    <string name="advancedTools">高级工具</string>
+    <string name="queryPhoneLocation">归属地查询</string>
+    <string name="smsBackups">短信备份</string>
+    <string name="phoneLocationCheck">号码归属地查询</string>
+    <string name="smsResume">短信还原</string>
+    <string name="softwareManager">软件管家</string>
 </resources>

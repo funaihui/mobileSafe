@@ -57,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
                         Intent blacklist = new Intent(MainActivity.this,BlacklistActivity.class);
                         startActivity(blacklist);
                         break;
+                    case 2:
+                        Intent softwareManager = new Intent(MainActivity.this,SoftwareManageActivity.class);
+                        startActivity(softwareManager);
+                        break;
+                    case 7:
+                        Intent advancedTools = new Intent(MainActivity.this,AdvancedToolsActivity.class);
+                        startActivity(advancedTools);
+                        break;
                     case 8:
                         Intent settingCenter = new Intent(MainActivity.this,SettingCenterActivity.class);
                         startActivity(settingCenter);

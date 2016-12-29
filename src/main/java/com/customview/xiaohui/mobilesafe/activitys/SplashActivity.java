@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -36,6 +37,7 @@ import org.xutils.x;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -65,7 +67,43 @@ public class SplashActivity extends AppCompatActivity {
         initEvent();//监听事件
         timeInitialization();//处理耗时操作
         initData();
+        copyDB("address.db");
     }
+
+    private void copyDB(final String s) {
+        File file = new File("/data/data/"+getPackageName() + "/files/" + s);
+        if (file.exists()){
+            return;
+        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    copyFile(s);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+private void copyFile(String s) throws IOException {
+    AssetManager assetManager = getAssets();
+    InputStream inputStream = assetManager.open(s);
+    FileOutputStream outputStream = openFileOutput(s,MODE_PRIVATE);
+    byte[] buf = new byte[10240];
+    int len = 0;
+    int counts = 1;
+    while ((len = inputStream.read(buf)) != -1){
+        outputStream.write(buf,0,len);
+        if (counts % 10==0){
+            outputStream.flush();
+        }
+        counts++;
+    }
+    outputStream.flush();
+    outputStream.close();
+    inputStream.close();
+}
     private void timeInitialization(){
         //一开始动画，就应该干耗时的业务（网络，本地数据初始化，数据的拷贝等）
         if (SPUtil.getBoolen(getApplicationContext(), MyConstants.ISAUTOUPDATE, false)) {
