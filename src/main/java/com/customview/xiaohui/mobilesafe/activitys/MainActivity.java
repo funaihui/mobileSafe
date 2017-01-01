@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent softwareManager = new Intent(MainActivity.this,SoftwareManageActivity.class);
                         startActivity(softwareManager);
                         break;
+                    case 3:
+                        Intent taskManager = new Intent(MainActivity.this,TaskManagerActivity.class);
+                        startActivity(taskManager);
+                        break;
                     case 7:
                         Intent advancedTools = new Intent(MainActivity.this,AdvancedToolsActivity.class);
                         startActivity(advancedTools);

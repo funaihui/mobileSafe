@@ -1,6 +1,9 @@
 package com.customview.xiaohui.mobilesafe.activitys;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,6 +13,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +30,14 @@ import android.widget.Toast;
 import com.customview.xiaohui.mobilesafe.R;
 import com.customview.xiaohui.mobilesafe.domain.AppInfoBean;
 import com.customview.xiaohui.mobilesafe.engine.LoadAllSoftwareEngine;
+import com.jaeger.library.StatusBarUtil;
+import com.stericson.RootTools.RootTools;
+import com.stericson.RootTools.RootToolsException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import dmax.dialog.SpotsDialog;
@@ -70,6 +79,7 @@ public class SoftwareManageActivity extends AppCompatActivity implements View.On
             super.handleMessage(msg);
         }
     };
+    private BroadcastReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +87,7 @@ public class SoftwareManageActivity extends AppCompatActivity implements View.On
         initView();
         initData();
         initEvent();
+        initRemoveApkReceiver();
     }
 
     private void initEvent() {
@@ -125,6 +136,8 @@ public class SoftwareManageActivity extends AppCompatActivity implements View.On
                 handler.sendEmptyMessage(LOADING);
 
                 appinfos = LoadAllSoftwareEngine.loadAllSoftware(SoftwareManageActivity.this);
+                userApp.clear();
+                sysApp.clear();
                 for (AppInfoBean appinfo : appinfos) {
                     if (appinfo.isSysApp()) {
                         sysApp.add(appinfo);
@@ -139,11 +152,12 @@ public class SoftwareManageActivity extends AppCompatActivity implements View.On
 
     private void initView() {
         setContentView(R.layout.activity_software_manage);
+        StatusBarUtil.setColor(this, 0x03a9f4);//设置系统状态栏的颜色
         mRomText = (TextView) findViewById(R.id.tv_software_rom);
         mSDText = (TextView) findViewById(R.id.tv_software_sd);
         mAppLabel = (TextView) findViewById(R.id.tv_software_app_label);
         mShowAllSoftwrae = (ListView) findViewById(R.id.lv_software_show_all_software);
-        spotsDialog = new SpotsDialog(SoftwareManageActivity.this);
+        spotsDialog = new SpotsDialog(SoftwareManageActivity.this,"玩命加载中...");
 
         mAdapter = new MyAdapter();
         mShowAllSoftwrae.setAdapter(mAdapter);
@@ -190,7 +204,8 @@ public class SoftwareManageActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_popup_window_uninstall:
-                Toast.makeText(getApplicationContext(), "卸载", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(), "卸载", Toast.LENGTH_SHORT).show();
+                removeApp();
                 break;
             case R.id.iv_popup_window_start:
                 //Toast.makeText(getApplicationContext(),"启动",Toast.LENGTH_SHORT).show();
@@ -212,6 +227,60 @@ public class SoftwareManageActivity extends AppCompatActivity implements View.On
 
                 break;
         }
+    }
+
+    private void initRemoveApkReceiver() {
+        //删除apk(包括系统apk)的监听广播
+        receiver = new BroadcastReceiver(){
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                //更新数据 刷新数据
+                initData();
+            }
+        };
+
+        //注册删除apk广播
+        IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_REMOVED);
+        Log.i("Wizardev", "initRemoveApkReceiver: 已删除");
+        //注意配置数据模式
+        filter.addDataScheme("package");
+        registerReceiver(receiver, filter);
+    }
+    private void removeApp() {
+        if (!clcickPosition.isSysApp()){
+            //用户应用
+            Intent intent = new Intent("android.intent.action.DELETE");
+            intent.addCategory("android.intent.category.DEFAULT");
+            intent.setData(Uri.parse("package:"+clcickPosition.getPackageName()));
+            startActivity(intent);
+        }else {
+            //判断是否root刷机
+            if (!RootTools.isRootAvailable()) {
+                Toast.makeText(getApplicationContext(), "请先root刷机", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            //是否root权限授权给当前apk
+            try {
+                if (!RootTools.isAccessGiven()) {
+                    Toast.makeText(getApplicationContext(), "请先root刷机", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                //直接可以使用命令删除apk
+                RootTools.sendShell("mount -o remount rw /system", 8000);//设置命令的超时时间为8秒
+                RootTools.sendShell("rm -r " + clcickPosition.getApkPath(), 8000);
+                RootTools.sendShell("mount -o remount r /system", 8000);
+            } catch (TimeoutException e) {
+                e.printStackTrace();
+            } catch (RootToolsException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
     }
 
     /**
@@ -242,6 +311,12 @@ public class SoftwareManageActivity extends AppCompatActivity implements View.On
 
 // 启动分享GUI
         oks.show(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(receiver);
+        super.onDestroy();
     }
 
     /**

@@ -28,7 +28,6 @@ public class BlacklistService extends Service {
     private BlacklistSmsReceiver smsReceiver;
     private BlacklistDao blacklistDao;
     private PhoneStateListener listener;
-    ;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -39,7 +38,15 @@ public class BlacklistService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        /*Intent i = new Intent();
+        i.setAction("com.customview.xiaohui.mobilesafe.activitys.MainActivity");
+        PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 0, i, 0);
+        Notification.Builder builder = new Notification.Builder(getApplicationContext());
+        builder.setSmallIcon(R.drawable.app).setContentTitle("手机卫士").setContentText("黑名单拦截服务已开启")
+                .setPriority(Notification.PRIORITY_MAX).setContentIntent(pi).build();
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(110,builder.build());*/
         blacklistDao = BlacklistDao.getInstance(getApplicationContext());
         //注册监听广播
         smsReceiver = new BlacklistSmsReceiver();

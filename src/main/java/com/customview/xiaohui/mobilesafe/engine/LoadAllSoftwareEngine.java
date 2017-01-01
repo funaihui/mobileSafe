@@ -58,6 +58,9 @@ public class LoadAllSoftwareEngine {
             }else {
                 bean.setSysApp(false);
             }
+
+            String dir = packageInfo.applicationInfo.sourceDir;
+            bean.setApkPath(dir);
             beanList.add(bean);
         }
         return beanList;

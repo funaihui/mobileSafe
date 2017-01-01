@@ -17,6 +17,8 @@ public interface MyConstants {
     String MODE = "mode";
     String TOASTX = "toastX";
     String TOASTY = "toastY";
+    String LOCKCLEARN = "lockclearn";
+    String SHOWSYSTASK = "showsystask";
     int SEED = 110;
     int TEL = 1 <<0;
     int SMS = 1 << 1;

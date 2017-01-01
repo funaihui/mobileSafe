@@ -7,7 +7,9 @@
     <string name="inputPassword">输入密码：</string>
     <string name="reInputPassword">确认密码：</string>
     <string name="commit">确定</string>
+    <string name="percentage_of_memory_used">内存占用率：</string>
     <string name="login">登陆</string>
+    <string name="BAI_FEN_HAO">%</string>
     <string name="setup1Title">1、欢迎使用手机防盗</string>
     <string name="setup1Description">您的手机防盗卫士：</string>
     <string name="simChangeMessage">SIM卡变更报警</string>
@@ -54,4 +56,11 @@
     <string name="phoneLocationCheck">号码归属地查询</string>
     <string name="smsResume">短信还原</string>
     <string name="softwareManager">软件管家</string>
+    <string name="setting">设置</string>
+    <string name="selectAll">全选</string>
+    <string name="lockClearTask">锁屏清理进程</string>
+    <string name="showSysTask">显示系统进程</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
 </resources>

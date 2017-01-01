@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.customview.xiaohui.mobilesafe.R;
 import com.customview.xiaohui.mobilesafe.engine.PhoneLocation;
 import com.customview.xiaohui.mobilesafe.engine.SmsBackupEngine;
+import com.jaeger.library.StatusBarUtil;
 
 public class AdvancedToolsActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mQueryLocation;
@@ -38,6 +39,7 @@ public class AdvancedToolsActivity extends AppCompatActivity implements View.OnC
 
     private void initView() {
         setContentView(R.layout.activity_anvanced_tools);
+        StatusBarUtil.setColor(this, 0x9E9E9E);//设置系统状态栏的颜色
         mQueryLocation = (TextView) findViewById(R.id.tv_ad_tools_query_location);
         mSmsBackups = (TextView) findViewById(R.id.tv_ad_tools_backups);
         mSmsResume = (TextView) findViewById(R.id.tv_ad_tools_resume);

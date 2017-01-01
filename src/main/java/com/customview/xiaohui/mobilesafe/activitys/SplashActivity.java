@@ -28,6 +28,7 @@ import com.customview.xiaohui.mobilesafe.R;
 import com.customview.xiaohui.mobilesafe.domain.VersionBean;
 import com.customview.xiaohui.mobilesafe.utils.MyConstants;
 import com.customview.xiaohui.mobilesafe.utils.SPUtil;
+import com.jaeger.library.StatusBarUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -279,6 +280,7 @@ private void copyFile(String s) throws IOException {
 
     private void initView() {
         setContentView(R.layout.activity_splash);
+        StatusBarUtil.setTranslucent(this,0);
         mRelativeLayout = (RelativeLayout) findViewById(R.id.activity_splash);
         mVersionName = (TextView) findViewById(R.id.tv_splash_version_name);
         mProgressBar = (ProgressBar) findViewById(R.id.pb_splash_download_progress);

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@color/colorAdvancedTools"
+    android:gravity="center"
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content">
+<ImageView
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:layout_width="0dp"
+    android:clickable="true"
+    android:background="@drawable/popupwindow_taskmanager_button_selector"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:id="@+id/iv_pw_task_manager_clear"
+    android:src="@drawable/ic_delete_black_24dp"/>
+    <ImageView
+        android:clickable="true"
+        android:background="@drawable/popupwindow_taskmanager_button_selector"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_width="0dp"
+        android:id="@+id/iv_pw_taskmanager_fanselect"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_done_all_black_24dp"/>
+    <ImageView
+        android:clickable="true"
+        android:background="@drawable/popupwindow_taskmanager_button_selector"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/iv_pw_taskmanager_select_all"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_spellcheck_black_24dp"/>
+    <ImageView
+        android:clickable="true"
+        android:background="@drawable/popupwindow_taskmanager_button_selector"
+        android:layout_width="0dp"
+        android:id="@+id/iv_pw_task_manager_setting"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:src="@drawable/ic_settings_black_24dp"/>
+</LinearLayout>

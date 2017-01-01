@@ -3,17 +3,17 @@ package com.customview.xiaohui.mobilesafe.domain;
 import android.graphics.drawable.Drawable;
 
 /**
- * Created by wizardev on 2016/12/29.
+ * Created by wizardev on 2016/12/30.
  */
 
-public class AppInfoBean {
+public class RunningTaskBean {
     private String appName;
     private Drawable appIcon;
     private boolean isSysApp;
-    private boolean isSD;
-    private long appSize;
+    private long appRunningSize;
     private String packageName;
-    private String apkPath;
+    private boolean isChecked;
+
     public Drawable getAppIcon() {
         return appIcon;
     }
@@ -30,20 +30,12 @@ public class AppInfoBean {
         this.appName = appName;
     }
 
-    public long getAppSize() {
-        return appSize;
+    public long getAppRunningSize() {
+        return appRunningSize;
     }
 
-    public void setAppSize(long appSize) {
-        this.appSize = appSize;
-    }
-
-    public boolean isSD() {
-        return isSD;
-    }
-
-    public void setSD(boolean SD) {
-        isSD = SD;
+    public void setAppRunningSize(long appRunningSize) {
+        this.appRunningSize = appRunningSize;
     }
 
     public boolean isSysApp() {
@@ -54,17 +46,6 @@ public class AppInfoBean {
         isSysApp = sysApp;
     }
 
-    @Override
-    public String toString() {
-        return "AppInfoBean{" +
-                "appIcon=" + appIcon +
-                ", appName='" + appName + '\'' +
-                ", isSysApp=" + isSysApp +
-                ", isSD=" + isSD +
-                ", appSize=" + appSize +
-                '}';
-    }
-
     public String getPackageName() {
         return packageName;
     }
@@ -73,11 +54,22 @@ public class AppInfoBean {
         this.packageName = packageName;
     }
 
-    public String getApkPath() {
-        return apkPath;
+    @Override
+    public String toString() {
+        return "RunningTaskBean{" +
+                "appIcon=" + appIcon +
+                ", appName='" + appName + '\'' +
+                ", isSysApp=" + isSysApp +
+                ", appRunningSize=" + appRunningSize +
+                ", packageName='" + packageName + '\'' +
+                '}';
     }
 
-    public void setApkPath(String apkPath) {
-        this.apkPath = apkPath;
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 }
